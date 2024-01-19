@@ -1,0 +1,57 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "mitsuba_wrapper"
+version = "0.1.0"
+authors = [{ name = "Connor Baker", email = "connorbaker01@gmail.com" }]
+requires-python = ">=3.12"
+license = { text = "MIT" }
+description = "temp"
+dependencies = [
+    "mitsuba",
+    "numpy",
+    "pydantic"
+]
+
+[project.optional-dependencies]
+dev = ["pyright", "ruff"]
+
+[tool.ruff]
+preview = true
+select = ["F", "E", "W", "I", "PL", "FURB", "LOG", "RUF", "G", "TID"]
+ignore = [
+    # Ignore functions with many arguments (I like currying)
+    "PLR0913",
+    # Ignore syntax error in forward annotation for jaxtyping
+    "F722",
+]
+line-length = 120
+
+[tool.pyright]
+include = ["./mitsuba_wrapper"]
+pythonVersion = "3.12"
+pythonPlatform = "Linux"
+typeCheckingMode = "strict"
+useLibraryCodeForTypes = true
+
+# Disable reporting of unknown types
+reportUnknownMemberType = false
+reportUnknownVariableType = false
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnknownLambdaType = false
+
+# Misc
+deprecateTypingAliases = true
+reportCallInDefaultInitializer = true
+reportImplicitOverride = true
+reportImplicitStringConcatenation = true
+reportImportCycles = true
+reportMissingSuperCall = true
+reportPropertyTypeMismatch = true
+reportShadowedImports = true
+reportUninitializedInstanceVariable = true
+reportUnnecessaryTypeIgnoreComment = true
+reportUnusedCallResult = true

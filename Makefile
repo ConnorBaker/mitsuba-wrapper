@@ -1,3 +1,5 @@
+all: format check typecheck
+
 env:
 	micromamba create -f env.yaml -y
 check:
@@ -9,4 +11,4 @@ format:
 typecheck:
 	pyright .
 
-all: format check typecheck
+

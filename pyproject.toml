@@ -11,6 +11,7 @@ license = { text = "MIT" }
 description = "temp"
 dependencies = [
     "mitsuba",
+    "drjit",
     "numpy",
     "pydantic"
 ]

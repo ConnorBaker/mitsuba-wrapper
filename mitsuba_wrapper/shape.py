@@ -10,13 +10,14 @@ from mitsuba_wrapper.utils import Point3f, Transform4f
 type ObjType = Literal["obj"]
 type SphereType = Literal["sphere"]
 type RectangleType = Literal["rectangle"]
+type CubeType = Literal["cube"]
 type GroupType = Literal["shapegroup"]
 type InstanceType = Literal["instance"]
 
-type ShapeType = ObjType | SphereType | RectangleType | GroupType | InstanceType
+type ShapeType = ObjType | SphereType | RectangleType | CubeType | GroupType | InstanceType
 # Need to force Shape to be lazily evaluated since it is the value type parameter of the mapping
 # in ShapeGroup.
-type Shape = "Obj | Sphere | Rectangle | ShapeGroup | Instance"
+type Shape = "Obj | Sphere | Rectangle | Cube | ShapeGroup | Instance"
 
 
 class ShapeLike(BaseModel, frozen=True):
@@ -79,6 +80,13 @@ class Rectangle(PrimitiveLike, frozen=True):
     )
     type: RectangleType = "rectangle"
 
+@final
+class Cube(PrimitiveLike, frozen=True):
+    flip_normals: bool = Field(
+        default=False,
+        description="Is the cube inverted, i.e. should the normal vectors be flipped?",
+    )
+    type: CubeType = "cube"
 
 @final
 class ShapeGroup(BaseModel, extra="allow", frozen=True):
